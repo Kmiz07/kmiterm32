@@ -20,6 +20,7 @@ Consta de otra salida por relé simple para la linea de maniobra del quemador. L
 La salida para control de velocidad del ventilador dispone de un transistor mosfet de potencia y baja entrada y produce una salida pwm adecuada para un grupo de 4 ventiladores con un consumo maximo total de 2A.
 
 Toma los datos de temperatura ambiente, y temperaturas de fluidos mediante tres sensores ds18b20, encapsulados en un paquete de acero inoxidable impermeable. Estos sensores funcionan mediante el protocolo onewire y con un solo pin de datos se pueden muestrear las tres temperaturas.(fig.2)
+
 ![sonda](https://github.com/user-attachments/assets/e9f9806d-75bc-4244-8c9d-3b2b8988be85)
 
 fig. 2
