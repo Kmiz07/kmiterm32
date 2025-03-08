@@ -69,4 +69,5 @@ Elección de la temperatura ambiente, activar o desactivar calefacción. Forzar 
 Ademas, en la opción Propiedades se puede editar las propiedades del archivo de configuración de la centralita.
 La centralita inicia a la espera de una conexión, y no hace nada mas mientras no se conecte vía Bluetooth a la app, pero una vez esta en funcionamiento, se puede cerrar la app sin provocar la parada, la centralita seguirá funcionando con la configuración que tenga, y, en el caso de que se conecte de nuevo a la app, la centralita enviara una actualización de datos para componer las opciones de la app tal y como las tiene la centralita.
 
-![image](https://github.com/user-attachments/assets/00cc1e74-0859-4ac0-b95e-ddf6262d21d3)
+![movil](https://github.com/user-attachments/assets/6ba7f468-6ece-4b23-8d4c-76350589b7fe)
+
