@@ -9,7 +9,8 @@ El corazón del sistema es un esp32S, que dispone de conectividad tanto wifi com
 El diseño de la pcb ha sido realizado pensando en posibles futuras ampliaciones dando salida a la mayoría de los pines disponibles en el chip.
 No se ha tenido en cuenta el aislamiento mediante opto acopladores. En posibles ampliaciones, si las entradas/salidas lo requieren deberá tenerse en cuenta.
 El circuito consta de salida por doble relé para la válvula bypass de 12v(Fig. 1)
-![image](https://github.com/user-attachments/assets/a1593144-c1db-4b91-bf6f-7ba533bd6b1f)
+![valvula](https://github.com/user-attachments/assets/1e7efc5d-94a8-4548-9cf2-fbaae7b71f64)
+
 fig. 1
 
 Dicha válvula tiene doble circuito con final de carrera. Para optimizar el consumo y desgaste de materiales, se ha optado por temporizar la acción de cada circuito en un tiempo de 8 segundos configurable desde la app móvil.
