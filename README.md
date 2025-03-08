@@ -21,8 +21,22 @@ La salida para control de velocidad del ventilador dispone de un transistor mosf
 Toma los datos de temperatura ambiente, y temperaturas de fluidos mediante tres sensores ds18b20, encapsulados en un paquete de acero inoxidable impermeable. Estos sensores funcionan mediante el protocolo onewire y con un solo pin de datos se pueden muestrear las tres temperaturas.(fig.2)
 ![image](https://github.com/user-attachments/assets/eec37993-0454-4b55-9f88-e3056e983b31)
 fig. 2
+
 La alimentacion del chip, se obtiene a partir de los 12V mediante un sistema dc-dc del tipo MINI 560 (Fig.3)
 ![image](https://github.com/user-attachments/assets/77006aa3-844e-4db5-9ef2-30d3f0f2510f)
 fig. 3
 
 Se ha elegido este tipo de dispositivo pero en el pcb esta disponible tambien la posibilidad de montar un LF33cv.
+
+
+![image](https://github.com/user-attachments/assets/28e9574b-473e-42fc-8266-3a432e29568f)
+circuito electrico
+
+Descripción del software.
+
+El software esta realizado en Micropython (v1.24.1  2024-11-29 ). La estructura del código trabaja en modo asincrónico, por lo que se ha utilizado la librería aible en lugar de la ble tradicional para no interferir en el bucle de programa asincrónico.
+En el inicio, el programa se pone a la espera para recibir una petición de conexión por Bluetooth y no hará nada mas mientras no reciba esa primera conexión.
+Una vez recibe la primera petición, envía los datos configurables por usuario a la app y acto seguido comprueba la comunicación de las sondas de temperatura. Si estas no existen o no comunican se pone en marcha una rutina de configuración de las sondas mediante peticiones de modo que se pueda diferenciar el id de cada sonda y pueda ser memorizado en el archivo de configuración para próximos arranques.
+Esta integridad de los ids de cada sonda se comprueba a cada bucle de programa. Si esta falla, se detiene la calefacción y se retorna a la rutina de configuración.
+A cada vuelta del loop de programa, se comprueban las opciones requeridas por la app,(temperatura deseada, programación, velocidad de ventilador…..) y se toman las decisiones pertinentes.
+
