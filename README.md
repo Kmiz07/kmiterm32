@@ -40,3 +40,30 @@ Una vez recibe la primera petición, envía los datos configurables por usuario 
 Esta integridad de los ids de cada sonda se comprueba a cada bucle de programa. Si esta falla, se detiene la calefacción y se retorna a la rutina de configuración.
 A cada vuelta del loop de programa, se comprueban las opciones requeridas por la app,(temperatura deseada, programación, velocidad de ventilador…..) y se toman las decisiones pertinentes.
 
+Si la velocidad del ventilador se coloca en auto, esta vendrá definida por un algoritmo dependiendo del diferencial de temperatura deseada versus temperatura ambiente, y solo funcionara cuando el fluido de calefacción alcance una temperatura definida en la app.
+Si se define en la app esta sera fija.
+Se puede programar un cambio de estado. Esto es, si la calefacción esta en ON, se pondrá en OFF y viceversa.
+Esto se programa en la app móvil y se ajusta la hora del cambio. Cuando el programa recibe la orden, lo traduce a segundos de espera y llegado el momento hace el cambio.
+La comparación de tiempos la hace también a cada bucle de programa.
+En cualquier momento se puede desactivar mediante la app.
+El programa dispone de un archivo de configuración, en el cual, en una estructura json, se definen las variables perdurables y definibles del programa.
+Mediante la librería confjson, se puede editar este archivo y recuperar las variables definidas en el json.
+En este archivo se guardan también los Ids de las sondas de temperatura.
+El consumo eléctrico de la centralita en total reposo es de 14mA (utilizando el dc-dc) a 12v.
+Cuando se activa el quemador, el rele sube el consumo hasta 44 mA y mientras cambia de estado la válvula tres vías sube momentáneamente (8 segundos cada cambio) hasta los 75 mA.
+El consumo cuando se activa el ventilador si que ya puede subir hasta los 2A con los ventiladores que actualmente tengo instalados. El transistor mosfet consigue el funcionamiento si apenas calentarse por lo que he prescindido de refrigerarlo.
+El PWM del ventilador trabaja a una frecuencia de 30KHz, evitando el típico silbido que se genera a bajas frecuencias.
+
+Descripción de la app móvil.
+
+La app móvil, esta programada en appinventor. 
+He elegido esta plataforma porque, para aplicaciones sencillas, da unos resultados óptimos y esta al alcance de cualquier persona que tenga algunos conocimientos de cualquier lenguaje de programación.
+Cuando inicia la aplicación, si no es la primera vez que conecta, intentara conectar con el ultimo dispositivo con el que lo hizo satisfactoriamente. Si es la primera vez, directamente mostrara una lista de posibles candidatos.
+Cada vez que se cambia algún parámetro en la app, esta envia la solicitud a la centralita, y esta, una vez entiende la orden, le confirma la recepción a la app, y es solo entonces cuando se refleja este cambio en la app.
+De este modo se evitan posibles ordenes falsas o nulas.
+Por lo demás, dispone de la típicas ordenes que podría tener cualquier sistema de calefacción con ACS.
+Elección de la temperatura ambiente, activar o desactivar calefacción. Forzar quemador para ACS. Programar cambio de estado, controlar velocidad de ventilador…
+Ademas, en la opción Propiedades se puede editar las propiedades del archivo de configuración de la centralita.
+La centralita inicia a la espera de una conexión, y no hace nada mas mientras no se conecte vía Bluetooth a la app, pero una vez esta en funcionamiento, se puede cerrar la app sin provocar la parada, la centralita seguirá funcionando con la configuración que tenga, y, en el caso de que se conecte de nuevo a la app, la centralita enviara una actualización de datos para componer las opciones de la app tal y como las tiene la centralita.
+
+![image](https://github.com/user-attachments/assets/00cc1e74-0859-4ac0-b95e-ddf6262d21d3)
