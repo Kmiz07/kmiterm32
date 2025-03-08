@@ -1,5 +1,6 @@
 # kmiterm32
 Software y hardware para control de un sistema de calefacción para autocaravana/camper.
+Para contactar por cualquier problema o duda podeis hacerlo a traves de telegram en el canal micropython  https://t.me/micropython_es
 ![image](https://github.com/user-attachments/assets/5d72325a-72a1-46c5-8bac-9c52b57b173a)
 
 Descripción del Hardware.
